@@ -1,25 +1,30 @@
 #include <stdio.h>
-#include "stdlib.h"
-int zero(int valor){
-    if(valor < 10){
-        return 0;
+
+int zero(int valor[5]){
+    int *ptr;
+    ptr = valor;
+    int alteracoes = 0;
+    for (int i = 1; i < 6; ++i) {
+        if (ptr[i] < 10){
+            ptr[i] = 0;
+            alteracoes++;
+        }
     }
-};
+    return alteracoes;
+}
 int main() {
     int valores[5];
     int *ptr;
-    int contador = 0;
     for (int i = 1; i < 6; ++i) {
         printf("digite o valor de número %d \n", i);
         scanf("%d", &valores[i]);
     }
-    ptr = valores;
+    int alterados = zero(valores);
+
+    printf("foram alteradas %d posicoes", alterados);
+
     for (int i = 1; i < 6; ++i) {
-        zero(valores[i]);
-        if(zero(valores[i]) == 0){
-            contador++;
-        }
+        printf("\n%d", valores[i]);
     }
-    printf("%d", contador);
     return 0;
 }
